@@ -35,6 +35,12 @@ class HomePage extends StatelessWidget {
 
   _listaItems(List<dynamic> data, BuildContext context) {
     final List<Widget> opciones = [];
+
+    ///PROBLEMAS que yo no tengo con el forEach solucion
+    ///por que tengo initalData inicializado a [ arriba
+    if (opciones == null) {
+      return [];
+    }
     data.forEach((element) {
       final widgetTemp = ListTile(
         title: Text(element['texto']),
