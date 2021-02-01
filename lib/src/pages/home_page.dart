@@ -1,5 +1,7 @@
+import 'package:componentes/src/pages/alert_page.dart';
 import 'package:flutter/material.dart';
 import '../providers/opt_provider.dart';
+import '../utils/icon_string_util.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -36,12 +38,20 @@ class HomePage extends StatelessWidget {
     data.forEach((element) {
       final widgetTemp = ListTile(
         title: Text(element['texto']),
-        leading: Icon(
-          Icons.ac_unit_sharp,
-          color: Colors.blue,
-        ),
-        onTap: () {},
+        leading: getIcon(element['icon']),
+        trailing: Icon(Icons.keyboard_arrow_right),
+        onTap: () {
+          Navigator.pushNamed(context, element['ruta']);
+          //rutas tienen que estar definidas en el build de materialApp
+          //en  APP o main
+
+          /*final route = MaterialPageRoute(builder: (context) {
+            return AlertPage();
+          });
+          Navigator.push(context, route);*/
+        },
       );
+
       opciones.add(widgetTemp);
       opciones.add(Divider());
     });
