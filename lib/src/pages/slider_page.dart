@@ -54,6 +54,8 @@ class _SliderPageState extends State<SliderPage> {
         value: _valorDelSlider,
         min: 10.0,
         max: 400.0,
+        //hay una ternaria aquí en onchange para bloquear el slider
+        //dependiendo del checkbox
         onChanged: (_bloquearCheck)
             ? null
             : (v) {
