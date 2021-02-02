@@ -1,6 +1,7 @@
 import 'package:componentes/src/pages/animatde_container.dart';
 import 'package:componentes/src/pages/card_page.dart';
 import 'package:componentes/src/pages/input_page.dart';
+import 'package:componentes/src/pages/slider_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:componentes/src/pages/alert_page.dart';
@@ -16,6 +17,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     'avatar': (context) => AvatarPage(),
     'card': (context) => CardPage(),
     'animatedContainer': (context) => AnimatedContainerPage(),
-    'inputs': (context) => InputPage()
+    'inputs': (context) => InputPage(),
+    'slider': (context) => SliderPage()
   };
 }

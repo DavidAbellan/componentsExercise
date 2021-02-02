@@ -7,8 +7,18 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   String _nombre = '';
+  //opcion seleccionada debe existir en la lista _poderes
+  String _opcionSeleccionadaDropDown = 'Volar';
   String _email = '';
   String _fecha = '';
+  List<String> _poderes = [
+    'Volar',
+    'Correr',
+    'Nadar',
+    'Bucear',
+    'Pringar',
+    'SuperAliento'
+  ];
   //para que permanezca la fecha en el textfield de fechas
   TextEditingController _inputFieldDataController = new TextEditingController();
 
@@ -24,12 +34,13 @@ class _InputPageState extends State<InputPage> {
           _crearInput(),
           Divider(),
           _crearPersona(),
+          _crearDropDown(),
           Divider(),
           _crearEmail(),
           Divider(),
           _crearPassword(),
           Divider(),
-          _crearFecha(context)
+          _crearFecha(context),
         ],
       ),
     );
@@ -55,6 +66,7 @@ class _InputPageState extends State<InputPage> {
     return ListTile(
       title: Text('Tu nombre es $_nombre'),
       subtitle: Text('email : $_email'),
+      leading: Text(_opcionSeleccionadaDropDown),
     );
   }
 
@@ -121,5 +133,32 @@ class _InputPageState extends State<InputPage> {
         _inputFieldDataController.text = _fecha;
       });
     }
+  }
+
+  List<DropdownMenuItem<String>> _getOpcionesDropDown() {
+    List<DropdownMenuItem<String>> lista = new List();
+    _poderes.forEach((element) =>
+        lista.add(DropdownMenuItem(child: Text(element), value: element)));
+    return lista;
+  }
+
+  Widget _crearDropDown() {
+    return Row(
+      children: [
+        Icon(Icons.select_all),
+        SizedBox(
+          width: 30,
+        ),
+        Expanded(
+            child: DropdownButton(
+                value: _opcionSeleccionadaDropDown,
+                items: _getOpcionesDropDown(),
+                onChanged: (opcionSeleccionada) {
+                  setState(() {
+                    _opcionSeleccionadaDropDown = opcionSeleccionada;
+                  });
+                }))
+      ],
+    );
   }
 }
